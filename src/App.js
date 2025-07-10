@@ -13,23 +13,60 @@ import { sendMsgToOpenAI } from "./openAI";
 function App() {
   const msgEnd = useRef(null);
   // Scroll to the bottom when messages change
+  const [loading, setLoading] = useState(false);
+
   const [input, setInput] = useState("");
   const [messages, setMessages] = useState([
     { text: "hi , I am your assistant", isBot: true },
   ]);
-
-   useEffect(() => {
+  // useState to manage messages and input
+  useEffect(() => {
     msgEnd.current.scrollIntoView();
-   },[messages])
+  }, [messages]);
+
+  // useState to manage sidebar open/close state
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (
+        isSidebarOpen &&
+        !e.target.closest(".sideBar") &&
+        !e.target.closest(".hamburger")
+      ) {
+        setIsSidebarOpen(false);
+      }
+    };
+
+    document.addEventListener("click", handleClickOutside);
+    return () => document.removeEventListener("click", handleClickOutside);
+  }, [isSidebarOpen]);
+
+  //to be changed
+
+  
+
+  useEffect(() => {
+  const handleClickOutside = (e) => {
+    if (isSidebarOpen && !e.target.closest(".sideBar") && !e.target.closest(".hamburger")) {
+      setIsSidebarOpen(false);
+    }
+  };
+
+  document.addEventListener("click", handleClickOutside);
+  return () => document.removeEventListener("click", handleClickOutside);
+}, [isSidebarOpen]);
+
+
+  // Function to handle sending messages
   const handleSend = async () => {
-    const text  =input;
+    setLoading(true);
+    const text = input;
     setInput("");
     if (!text.trim()) return; // Prevent sending empty messages
-   setMessages([
-      ...messages,
-      { text, isBot: false },
-    ]);
+    setMessages([...messages, { text, isBot: false }]);
     const res = await sendMsgToOpenAI(text);
+    setLoading(false);
     setMessages([
       ...messages,
       { text, isBot: false },
@@ -38,9 +75,9 @@ function App() {
   };
   const handleEnter = async (e) => {
     if (e.key === "Enter" && input.trim()) {
-       await handleSend();
+      await handleSend();
     }
-  } // this function is not used but can be used to send message on enter key press
+  }; // this function is not used but can be used to send message on enter key press
   return (
     <div className="App">
       <div className="sideBar">
@@ -49,25 +86,50 @@ function App() {
             <img src={gptLogo} alt="Logo" className="logo" />{" "}
             <span className="brand">Chat GPT</span>
           </div>
-          <button onClick={() => { window.location.reload() }} className="Btn">
-            <img src={addBtn}  alt="addBtn" className="addBtn" />
+          <button
+            onClick={() => {
+              window.location.reload();
+            }}
+            className="Btn"
+          >
+            <img src={addBtn} alt="addBtn" className="addBtn" />
             New Chat
           </button>
           <div className="uppersideBtn">
-            <button className="query"  onClick={() => { setInput("what is Programming"); }}>
+            <button
+              className="query"
+              onClick={() => {
+                setInput("what is Programming");
+              }}
+            >
               <img src={msgIcon} alt="msgIcon" className="msgIcon" />
               what is Programming ?
             </button>
-         
-            <button className="query"  onClick={() => { setInput("How to use API ?"); }}>
+
+            <button
+              className="query"
+              onClick={() => {
+                setInput("How to use API ?");
+              }}
+            >
               <img src={msgIcon} alt="msgIcon" className="msgIcon" />
               How to use API ?
             </button>
-            <button className="query"  onClick={() => { setInput("Tell me about Debjyoti"); }}>
+            <button
+              className="query"
+              onClick={() => {
+                setInput("Tell me about Debjyoti");
+              }}
+            >
               <img src={msgIcon} alt="msgIcon" className="msgIcon" />
               Tell me about Debjyoti
             </button>
-            <button className="query"  onClick={() => { setInput("who is Debjyoti's Wife?"); }}>
+            <button
+              className="query"
+              onClick={() => {
+                setInput("who is Debjyoti's Wife?");
+              }}
+            >
               <img src={msgIcon} alt="msgIcon" className="msgIcon" />
               who is Debjyoti's Wife?
             </button>
@@ -89,17 +151,25 @@ function App() {
         </div>
       </div>
       <div className="main">
+ 
         <div className="chats">
-         
           {messages.map((message, i) => (
-            <div className={message.isBot?"chat bot":"chat"} key={i}>
+            <div className={message.isBot ? "chat bot" : "chat"} key={i}>
               <img src={message.isBot ? gptImgLogo : userIcon} alt="" />
-              <p className="txt">
-                {message.text}
-              </p>
+              <p className="txt">{message.text}</p>
             </div>
           ))}
-          <div ref={msgEnd}/>
+          {loading && (
+            <div className="chat">
+              <img src={gptImgLogo} alt="GPT" />
+              <div className="typing">
+                <span>.</span>
+                <span>.</span>
+                <span>.</span>
+              </div>
+            </div>
+          )}
+          <div ref={msgEnd} />
         </div>
         <div className="chatFooter">
           <div className="inp">

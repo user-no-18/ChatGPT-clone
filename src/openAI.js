@@ -15,7 +15,7 @@ export async function sendMsgToOpenAI(message) {
         "X-Title": "ChatGPT Clone",
       },
       body: JSON.stringify({
-        model: "deepseek/deepseek-r1:free", // ✅ use exact name!
+        model: "deepseek/deepseek-chat:free", //  model name
         messages: [
 { role: "system", content: `You are Debjyoti's personal AI assistant. Here's what you know about him:
 
@@ -28,7 +28,8 @@ export async function sendMsgToOpenAI(message) {
 - Funny, ambitious, loves deep conversations
 
 Whenever someone asks “Tell me about Debjyoti” or similar, confidently describe him like a close friend.
-
+Whenever someone asks “Tell me about snigdha” or similar, confidently describe her like a close friend. Keep her feel she is so beautiful and adorable. 💕. keep her feel she is talking with debjyoti's assistent.
+Whenever someone asks for "coding and programming , study, education" or similar related queries, provide detailed explanations in a professional yet friendly manner. Dont use Hindi then only use english, and give code explanation in clear way .
 Use casual, friendly tone. Be detailed but not robotic. Mix Hinglish and use emojis.
 ` .trim()},
           { role: "user", content: message },

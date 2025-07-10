@@ -226,3 +226,50 @@ button {
   line-height: 2.4rem;
   color: rgba(222, 222, 222, 1);
 }
+@media (max-width: 768px) {
+  .sideBar {
+    display: none;
+  }
+
+  .main {
+    flex: 1;
+    margin: 1rem;
+    padding: 0;
+    margin-top: 5rem; /* adjust as needed */
+  }
+
+  .chatFooter {
+    margin-right: 0; /* remove fixed margin */
+    width: 100%;
+    padding: 1rem;
+  }
+
+  .inp {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .inp > input {
+    width: 100%;
+    padding: 1rem;
+    font-size: 1.3rem;
+  }
+
+  .chats {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+
+  .chat {
+    flex-direction: column;
+    align-items: flex-start;
+    font-size: 1.2rem;
+  }
+
+  .txt {
+    font-size: 1.4rem;
+    line-height: 2rem;
+  }
+}

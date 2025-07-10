@@ -122,3 +122,4 @@ function App() {
 
 export default App;
 // this is changed code
+// this is the code for the chat application using React

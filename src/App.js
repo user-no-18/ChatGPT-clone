@@ -117,24 +117,7 @@ function App() {
               <img src={msgIcon} alt="msgIcon" className="msgIcon" />
               How to use API ?
             </button>
-            <button
-              className="query"
-              onClick={() => {
-                setInput("Tell me about Debjyoti");
-              }}
-            >
-              <img src={msgIcon} alt="msgIcon" className="msgIcon" />
-              Tell me about Debjyoti
-            </button>
-            <button
-              className="query"
-              onClick={() => {
-                setInput("who is Debjyoti's Wife?");
-              }}
-            >
-              <img src={msgIcon} alt="msgIcon" className="msgIcon" />
-              who is Debjyoti's Wife?
-            </button>
+           
           </div>
         </div>
         <div className="lowerSide">

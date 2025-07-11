@@ -1,0 +1,84 @@
+/* Default sidebar hidden on mobile */
+
+/* Add these styles to your existing app.css */
+
+/* Hamburger menu styles */
+.hamburger-btn {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 30px;
+  height: 24px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  z-index: 100;
+  position: fixed;
+  top: 20px;
+  left: 20px;
+}
+
+.hamburger-line {
+  width: 100%;
+  height: 3px;
+  background: white;
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+/* Sidebar modifications */
+.sideBar {
+  flex: 3;
+  border-right: 1px solid rgb(100, 100, 100);
+  transition: transform 0.3s ease;
+  z-index: 90;
+  background-color: rgb(3, 0, 31);
+  height: 100vh;
+  position: relative;
+}
+
+.main {
+  flex: 9;
+  transition: margin-left 0.3s ease;
+}
+
+/* Mobile styles */
+@media (max-width: 768px) {
+  .hamburger-btn {
+    display: flex;
+  }
+  
+  .sideBar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    transform: translateX(-100%);
+    width: 260px;
+    overflow: hidden;
+    
+  }
+  
+  .sideBar.active {
+    transform: translateX(0);
+  }
+  
+  .main {
+    margin-left: 0 !important;
+    width: 100%;
+  }
+  
+  /* Hamburger animation when active */
+  .hamburger-btn.active .hamburger-line:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+  }
+  
+  .hamburger-btn.active .hamburger-line:nth-child(2) {
+    opacity: 0;
+  }
+  
+  .hamburger-btn.active .hamburger-line:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -5px);
+  }
+}

@@ -1,4 +1,7 @@
 import "./App.css";
+import "./responsive.css";
+import "./darkmode.css";
+import { darkModeswitch } from "./darkmode.js"; // Import the dark mode switch function
 import React, { useEffect, useRef, useState } from "react";
 import gptLogo from "./assets/chatgpt.svg";
 import addBtn from "./assets/add-30.png";
@@ -12,8 +15,14 @@ import gptImgLogo from "./assets/chatgptLogo.svg";
 import { sendMsgToOpenAI } from "./openAI";
 function App() {
   const msgEnd = useRef(null);
+    const [sidebarActive, setSidebarActive] = useState(false);
+
+  const toggleSidebar = () => {
+    setSidebarActive(!sidebarActive);
+  }
   // Scroll to the bottom when messages change
   const [loading, setLoading] = useState(false);
+  /* const [isSidebarVisible, setIsSidebarVisible] = useState(true); */
 
   const [input, setInput] = useState("");
   const [messages, setMessages] = useState([
@@ -42,22 +51,6 @@ function App() {
     return () => document.removeEventListener("click", handleClickOutside);
   }, [isSidebarOpen]);
 
-  //to be changed
-
-  
-
-  useEffect(() => {
-  const handleClickOutside = (e) => {
-    if (isSidebarOpen && !e.target.closest(".sideBar") && !e.target.closest(".hamburger")) {
-      setIsSidebarOpen(false);
-    }
-  };
-
-  document.addEventListener("click", handleClickOutside);
-  return () => document.removeEventListener("click", handleClickOutside);
-}, [isSidebarOpen]);
-
-
   // Function to handle sending messages
   const handleSend = async () => {
     setLoading(true);
@@ -78,13 +71,22 @@ function App() {
       await handleSend();
     }
   }; // this function is not used but can be used to send message on enter key press
+
   return (
     <div className="App">
-      <div className="sideBar">
+    <button 
+        className={`hamburger-btn ${sidebarActive ? 'active' : ''}`}
+        onClick={toggleSidebar}
+      >
+        <div className="hamburger-line"></div>
+        <div className="hamburger-line"></div>
+        <div className="hamburger-line"></div>
+      </button>
+      <div className={`sideBar ${sidebarActive ? 'active' : ''}`}>
         <div className="upperside">
           <div className="uppersideTop">
             <img src={gptLogo} alt="Logo" className="logo" />{" "}
-            <span className="brand">Chat GPT</span>
+            <span className="brand">Data Verse</span>
           </div>
           <button
             onClick={() => {
@@ -151,7 +153,16 @@ function App() {
         </div>
       </div>
       <div className="main">
- 
+        
+        {/* dark mode switch */}
+        {/* <div className="darkmode-toggle-container">
+      <p>dark  mode</p>
+        <label className="switch">
+          <input type="checkbox" id="darkModeToggle" onChange={darkModeswitch} />
+          <span className="slider"></span>
+        </label>
+       </div> */}
+
         <div className="chats">
           {messages.map((message, i) => (
             <div className={message.isBot ? "chat bot" : "chat"} key={i}>

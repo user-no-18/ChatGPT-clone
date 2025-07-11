@@ -2,7 +2,7 @@ export async function sendMsgToOpenAI(message) {
   if (message.toLowerCase().includes("wife") || message.toLowerCase().includes("girlfriend") || message.toLowerCase().includes("snigdha")) {
     return `Snigdha is Debjyoti's girlfriend. She is a wonderful person who supports him in all his endeavors. She is disciplined, hardworking, and so adorable 💕` ;
   }
-  if (message.toLowerCase().includes("debjyoti")) {
+  if (message.toLowerCase().includes("tell me about debjyoti")) {
     return `Debjyoti Roy is a talented React developer and ECE student from RCCIIT. He's focused on DSA, AI, and fitness. Currently building cool projects and following Virat Kohli's discipline 🔥` 
   }
   try {

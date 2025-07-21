@@ -7,7 +7,7 @@ html {
   font-size: 62.5%;
 }
 body {
-  background-color: rgb(3, 0, 31);
+  background-color:#1f2123;
   color: white;
   font-family: "Poppins", sans-serif;
 }
@@ -20,6 +20,7 @@ button {
 }
 
 .sideBar {
+  
   flex: 3;
   flex-grow: 1;
   flex-shrink: 1;
@@ -51,7 +52,7 @@ button {
   height: 2rem;
 }
 .Btn {
-  background: #5a4bff;
+  background: #818181;
   border: none;
   color: white;
   padding: 1.5rem;
@@ -145,15 +146,17 @@ button {
 }
 
 .txt {
-  background-color: rgba(28, 30, 58, 1);
+  background-color:  #323434;
   padding: 1rem;
   border-radius: 10px;
-  color: white;
+  color: rgb(255, 247, 247);
   font-size: 1.4rem;
   line-height: 1.5;
   max-width: 70%;
 }
-
+ .bot .txt{
+  background-color:#252627;
+ }
 .chatFooter {
   padding: 1.5rem 0;
   width: 100%;
@@ -162,7 +165,7 @@ button {
 }
 
 .inp {
-  background: rgba(28, 30, 58, 1);
+  background: #3b3c3e;
   display: flex;
   align-items: center;
   border-radius: 0.5rem;
@@ -195,7 +198,7 @@ button {
 }
 
 .chats::-webkit-scrollbar-thumb {
-  background-color: #5a4bff;
+  background-color: #3d3d3d;
   border-radius: 10px;
 }
 

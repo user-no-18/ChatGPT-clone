@@ -11,7 +11,7 @@ import saved from "./assets/bookmark.svg";
 import pro from "./assets/rocket.svg";
 import sendBtn from "./assets/send.svg";
 import userIcon from "./assets/user-icon.png";
-import gptImgLogo from "./assets/chatgptLogo.svg";
+import chatbotlogo from "./assets/download.png";
 import { sendMsgToOpenAI } from "./openAI";
 function App() {
   const msgEnd = useRef(null);
@@ -20,7 +20,7 @@ function App() {
   const toggleSidebar = () => {
     setSidebarActive(!sidebarActive);
   }
-  // Scroll to the bottom when messages change
+  
   const [loading, setLoading] = useState(false);
   /* const [isSidebarVisible, setIsSidebarVisible] = useState(true); */
 
@@ -149,13 +149,13 @@ function App() {
         <div className="chats">
           {messages.map((message, i) => (
             <div className={message.isBot ? "chat bot" : "chat"} key={i}>
-              <img src={message.isBot ? gptImgLogo : userIcon} alt="" />
+              <img src={message.isBot ? chatbotlogo : userIcon} alt="" />
               <p className="txt">{message.text}</p>
             </div>
           ))}
           {loading && (
             <div className="chat">
-              <img src={gptImgLogo} alt="GPT" />
+              <img src={chatbotlogo} alt="GPT" />
               <div className="typing">
                 <span>.</span>
                 <span>.</span>

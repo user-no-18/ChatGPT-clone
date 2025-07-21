@@ -13,7 +13,7 @@ export async function sendMsgToOpenAI(message) {
       body: JSON.stringify({
         model: "deepseek/deepseek-chat:free", //  model name
         messages: [
-{ role: "system", content: `You are a helpful assistant. Please respond to the user's queries in a concise and informative manner.Be friendly but proffesional. If you don't know the answer, say "I don't know."` .trim()},
+{ role: "system", content: `You are a helpful assistant. Please respond to the user's queries in a concise and informative manner.Be friendly but proffesional. If you don't know the answer, say "I don't know."`.trim()},
           { role: "user", content: message },
         ],
       }),
